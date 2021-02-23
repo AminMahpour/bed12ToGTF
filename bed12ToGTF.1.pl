@@ -31,7 +31,7 @@ while (<STDIN>) {
 	$trxstart+=1;   # Conversion from BED to GTF!!
 
 	# Print the Transcript Line
-	print "$trxchr\tblank\ttranscript\t$trxstart\t$trxend\t.\t$trxstrand\t.\ttranscript_id \"$trxid\;\n";
+	print "$trxchr\tblank\ttranscript\t$trxstart\t$trxend\t.\t$trxstrand\t.\tgene_id \"gid\"\;\ttranscript_id \"$trxid\"\;\n";
 	
 	@blocksizes=split(",", $line[10]);
 	@blockstarts=split(",", $line[11]);
@@ -52,7 +52,7 @@ while (<STDIN>) {
 		$thisstart=$trxstart+$blockstarts[$i];
 		$thisend=$trxstart+$blockstarts[$i]+$blocksizes[$i]-1;    # The -1 added empirically after browser inspection
 		#Print the Exon lines.
-		print "$trxchr\tblank\texon\t$thisstart\t$thisend\t.\t$trxstrand\t.\ttranscript_id \"$trxid\; exon_number $exon_count\;\n";	
+		print "$trxchr\tblank\texon\t$thisstart\t$thisend\t.\t$trxstrand\t.\tgene_id \"gid\"\;\ttranscript_id \"$trxid\"\; exon_number $exon_count\;\n";	
 		}
 
 		elsif ($trxstrand eq "-"){
@@ -61,9 +61,8 @@ while (<STDIN>) {
 		$thisstart=$trxstart+$blockstarts[$i];
 		$thisend=$trxstart+$blockstarts[$i]+$blocksizes[$i]-1;    # The -1 added empirically after browser inspection
 		#Print the Exon lines.
-		print "$trxchr\tblank\texon\t$thisstart\t$thisend\t.\t$trxstrand\t.\ttranscript_id \"$trxid\; exon_number $rev_exon_count\;\n";	
+		print "$trxchr\tblank\texon\t$thisstart\t$thisend\t.\t$trxstrand\t.\tgene_id \"gid\"\;\ttranscript_id \"$trxid\"\; exon_number $rev_exon_count\;\n";	
 		}
 }
 
 }
-
